@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { ListGroup, ListGroupItem } from "reactstrap";
 import FontAwesome from "react-fontawesome";
+import { getFileExtention } from "../../utils/file";
 
 const Controlls = ({ onEdit, onDelete }) => (
   <span className="files-list--controlls">
@@ -10,7 +11,10 @@ const Controlls = ({ onEdit, onDelete }) => (
 );
 
 const EditField = ({ item, onChange }) => (
-  <input type="text" placeholder={item.fileName} onChange={onChange} />
+  <>
+    <input type="text" placeholder={item.name} onChange={onChange} />
+    <span className="warning">please, don't change file extention</span>
+  </>
 );
 
 class FilesList extends Component {
@@ -70,7 +74,7 @@ class FilesList extends Component {
     this.setState(state => {
       state.files.map(item => {
         if (item.id === id) {
-          item.fileName = value;
+          item.fileName = value + '.' + getFileExtention(item.fileName).ext;
         }
         return item;
       });
@@ -88,7 +92,7 @@ class FilesList extends Component {
               <ListGroupItem key={file.id}>
                 <p><strong>Name: </strong> {isEditable === file.id ? (
                   <EditField
-                    item={file}
+                    item={getFileExtention(file.fileName)}
                     onChange={e => this.onChange(e, file.id)}
                   />
                 ) : (
