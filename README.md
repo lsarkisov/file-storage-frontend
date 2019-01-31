@@ -1,5 +1,5 @@
 <h1 align="center">
-  React/Redux, Saga
+  File storage
 </h1>
 
 
@@ -10,7 +10,7 @@
     Navigate into your new site’s directory and start it up. The project will be running on port `3000`
 
     ```sh
-    cd <React_Redux_Saga>
+    cd <file-storage-frontend>
     npm i
     npm start
     ```
