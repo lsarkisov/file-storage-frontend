@@ -27,6 +27,23 @@ function* startUploadingFiles() {
     types.UPLOAD_FILE_START, getUploadedFiles);
 }
 
+function* updateFile(data) {
+  const { value } = data;
+  const formData  = new FormData();
+  console.log("ID: ", value.fileId, value.newName);
+  
+  formData.append('fileId', value.fileId);
+  formData.append('newName', value.newName);
+  
+  const payload = yield call(() => services.updateFile(formData));
+  yield put({ type: types.UPDATE_FILE_SUCCESS, payload });
+}
+
+function* updateFileStart() {
+  yield takeEvery(
+    types.UPDATE_FILE_START, updateFile);
+}
+
 function* deleteFile(data) {
   const formData  = new FormData();
   formData.append('fileId', data.fileId);
@@ -44,6 +61,7 @@ export default function* rootSaga() {
   yield all([
     startToGetAllFiles(),
     startUploadingFiles(),
+    updateFileStart(),
     deleteFileStart(),
   ]);
 }

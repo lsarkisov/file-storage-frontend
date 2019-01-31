@@ -21,6 +21,7 @@ class FilesList extends Component {
   state = {
     files: [],
     isEditable: null,
+    isDirty: false,
     isLoading: false,
   };
 
@@ -43,10 +44,18 @@ class FilesList extends Component {
   }
 
   onEdit = id => {
-    const { isEditable } = this.state;
+    const { files, isEditable, isDirty } = this.state;
+    if (isDirty) {
+      let file = files.filter(file => file.id === id)[0];
+      this.props.updateFileStart({
+        fileId: file.id,
+        newName: file.fileName,
+      })
+    }
     this.setState({
       isEditable: isEditable === id ? null : id,
-      isLoading: isEditable === id
+      isLoading: isEditable === id,
+      isDirty: false,
     });
   };
 
@@ -78,6 +87,8 @@ class FilesList extends Component {
         }
         return item;
       });
+      state.isDirty = true;
+      return state;
     });
   };
 

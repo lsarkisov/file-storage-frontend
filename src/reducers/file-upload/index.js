@@ -45,6 +45,28 @@ export default (state = {}, action) => {
         fileUploadError: true
       };
 
+    case types.UPDATE_FILE_START:
+      return {
+        ...state,
+        isLoading: true
+      };
+    case types.UPDATE_FILE_SUCCESS:
+      console.log("UPDATE FILE", action.payload);
+
+      return {
+        ...state,
+        isLoading: false,
+        files: action.payload,
+        fileUploadError: false
+      };
+    case types.UPDATE_FILE_ERROR:
+      return {
+        ...state,
+        isLoading: false,
+        files: null,
+        fileUploadError: true
+      };
+
     case types.DELETE_FILE_START:
       return {
         ...state,

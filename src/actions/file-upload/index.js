@@ -50,6 +50,30 @@ export const uploadFileError = error => {
 };
 
 /** 
+ * Update file
+*/
+export const updateFileStart = value => {
+  return {
+    type: types.UPDATE_FILE_START,
+    value,
+  };
+};
+
+export const updateFileSuccess = payload => {
+  return {
+    type: types.UPDATE_FILE_SUCCESS,
+    payload,
+  };
+};
+
+export const updateFileError = error => {
+  return {
+    type: types.UPDATE_FILE_ERROR,
+    error,
+  };
+};
+
+/** 
  * Delete file
 */
 export const deleteFileStart = fileId => {
