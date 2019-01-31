@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import FilesList from '../../components/file-upload/files-list';
-import { getAllFilesStatrt } from '../../actions/file-upload';
+import { getAllFilesStatrt, deleteFileStart } from '../../actions/file-upload';
 
 const mapStateToProps = (state, ownProps) => {
   const { files, isLoading } = state.fileUpload;
@@ -11,7 +11,7 @@ const mapStateToProps = (state, ownProps) => {
   ...ownProps,
 }};
 
-const mapDispatchToProps = { getAllFilesStatrt };
+const mapDispatchToProps = { getAllFilesStatrt, deleteFileStart };
 
 export default connect(
   mapStateToProps,

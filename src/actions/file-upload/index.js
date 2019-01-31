@@ -48,3 +48,27 @@ export const uploadFileError = error => {
     error,
   };
 };
+
+/** 
+ * Delete file
+*/
+export const deleteFileStart = fileId => {
+  return {
+    type: types.DELETE_FILE_START,
+    fileId,
+  };
+};
+
+export const deleteFileSuccess = payload => {
+  return {
+    type: types.DELETE_FILE_SUCCESS,
+    payload,
+  };
+};
+
+export const deleteFileError = error => {
+  return {
+    type: types.DELETE_FILE_ERROR,
+    error,
+  };
+};

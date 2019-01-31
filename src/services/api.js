@@ -14,3 +14,8 @@ export const uploadFiles = body => callApi('/file/upload/multiple', {
   method: 'post',
   body,
 });
+
+export const deleteFile = body => callApi('/file/delete', {
+  method: 'delete',
+  body,
+});

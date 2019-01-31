@@ -27,6 +27,23 @@ function* startUploadingFiles() {
     types.UPLOAD_FILE_START, getUploadedFiles);
 }
 
+function* deleteFile(data) {
+  const formData  = new FormData();
+  formData.append('fileId', data.fileId);
+  
+  const payload = yield call(() => services.deleteFile(formData));
+  yield put({ type: types.DELETE_FILE_SUCCESS, payload });
+}
+
+function* deleteFileStart() {
+  yield takeEvery(
+    types.DELETE_FILE_START, deleteFile);
+}
+
 export default function* rootSaga() {
-  yield all([startToGetAllFiles(), startUploadingFiles()]);
+  yield all([
+    startToGetAllFiles(),
+    startUploadingFiles(),
+    deleteFileStart(),
+  ]);
 }

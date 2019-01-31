@@ -53,6 +53,7 @@ class FilesList extends Component {
       state.files.forEach((item, index) => {
         if (item.id === id) {
           foundItem = index;
+          this.props.deleteFileStart(id);
         }
       });
 
