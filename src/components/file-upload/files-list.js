@@ -21,14 +21,6 @@ class FilesList extends Component {
   };
 
   componentDidMount() {
-    /*
-      id: "17670ded-c3a8-429a-8d42-b23135b6ffd6"
-      fileDownloadUri: "http://localhost:8080/download/17670ded-c3a8-429a-8d42-b23135b6ffd6"
-      fileName: "19431067_303.jpg"
-      fileType: "image/jpeg"
-      size: 64733
-    */
-
     this.props.getAllFilesStatrt();
   }
 
@@ -36,7 +28,6 @@ class FilesList extends Component {
     const { files, isLoading } = this.props;
     
     if (files && files.length !== this.state.files.length) {
-      console.log('PROPS', files);
       this.setState({
         files,
       })
@@ -92,19 +83,22 @@ class FilesList extends Component {
         {isLoading && <FontAwesome name="spinner" className="spinner" />}
         {files.length > 0 && (
           <ListGroup>
-            {files.map(item => (
-              <ListGroupItem key={item.id}>
-                {isEditable === item.id ? (
+            {files.map(file => (
+              <ListGroupItem key={file.id}>
+                <p><strong>Name: </strong> {isEditable === file.id ? (
                   <EditField
-                    item={item}
-                    onChange={e => this.onChange(e, item.id)}
+                    item={file}
+                    onChange={e => this.onChange(e, file.id)}
                   />
                 ) : (
-                  item.fileName
-                )}
+                  file.fileName
+                )}</p>
+                <p><strong>Path: </strong> {file.fileDownloadUri}</p>
+                <p><strong>Type: </strong> {file.fileType}</p>
+                <p><strong>Size: </strong> {file.size}</p>
                 <Controlls
-                  onEdit={() => this.onEdit(item.id)}
-                  onDelete={() => this.onDelete(item.id)}
+                  onEdit={() => this.onEdit(file.id)}
+                  onDelete={() => this.onDelete(file.id)}
                 />
               </ListGroupItem>
             ))}
