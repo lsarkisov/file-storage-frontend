@@ -5,42 +5,42 @@ export default (state = {}, action) => {
     case types.GET_ALL_FILES_START:
       return {
         ...state,
-        fileIsUploading: true
+        isLoading: true
       };
     case types.GET_ALL_FILES_SUCCESS:
       console.log("GET ALL FILES ON START", action.payload);
 
       return {
         ...state,
-        fileIsUploading: false,
+        isLoading: false,
         files: action.payload,
         fileUploadError: false
       };
     case types.GET_ALL_FILES_ERROR:
       return {
         ...state,
-        fileIsUploading: false,
+        isLoading: false,
         files: null,
         fileUploadError: true
       };
     case types.UPLOAD_FILE_START:
       return {
         ...state,
-        fileIsUploading: true
+        isLoading: true
       };
     case types.UPLOAD_FILE_SUCCESS:
       console.log("GET ALL UPLOADED FILES", action.payload);
 
       return {
         ...state,
-        fileIsUploading: false,
+        isLoading: false,
         files: action.payload,
         fileUploadError: false
       };
     case types.UPLOAD_FILE_ERROR:
       return {
         ...state,
-        fileIsUploading: false,
+        isLoading: false,
         files: null,
         fileUploadError: true
       };

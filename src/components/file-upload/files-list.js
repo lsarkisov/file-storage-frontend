@@ -33,13 +33,17 @@ class FilesList extends Component {
   }
 
   componentDidUpdate() {
-    const { files } = this.props;
+    const { files, isLoading } = this.props;
     
     if (files && !this.state.files.length) {
       console.log('PROPS', files);
       this.setState({
         files,
       })
+    }
+
+    if (this.state.isLoading !== isLoading) {
+      this.setState({ isLoading });
     }
   }
 
